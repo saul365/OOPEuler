@@ -1,9 +1,17 @@
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.BufferedWriter;
+import java.util.FileWriter;
+import java.util.FileReader;
 import java.math.BigInteger;
 
 public class Factorial{ 
 	public static void main(String[] args){ 
+		try{
+
+		}catch(FileNotFOundException fnfe){
+
+		}
 		System.out.println("Este programa calcula el factorial de 1,000,000 con programacion dinamica");
 		LinkedList<BigInteger> pd=new LinkedList<BigInteger>();
 		long it= System.currentTimeMillis();
