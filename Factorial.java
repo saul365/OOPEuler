@@ -1,15 +1,18 @@
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.BufferedWriter;
-import java.util.FileWriter;
-import java.util.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.File;
 import java.math.BigInteger;
 
 public class Factorial{ 
 	public static void main(String[] args){ 
+		String archivo="archivo.txt";
 		try{
-
-		}catch(FileNotFOundException fnfe){
+			Scanner reader=new Scanner(new File(archivo));
+		}catch(FileNotFoundException fnfe){
 
 		}
 		System.out.println("Este programa calcula el factorial de 1,000,000 con programacion dinamica");
