@@ -18,7 +18,11 @@ public class FactorialS{
 		System.out.println("Este programa calcula el factorial de 1,000,000 con programacion dinamica");
 		LinkedList<BigInteger> pd=new LinkedList<BigInteger>();
 		long it= System.currentTimeMillis();
-		BigInteger res = fact(/*6*/1000000,pd);
+		BigInteger res; 
+		//System.out.println( new BigInteger("1000000").bitLength());
+		for(int i=0;i<1000001;i+=10000){
+			res = fact(/*6*/i,pd);
+		}
 		System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
 		it= System.currentTimeMillis();
 		res = fact(/*6*/1000000,pd);
@@ -34,6 +38,7 @@ public class FactorialS{
 	}
 	public static BigInteger fact(int finale,LinkedList<BigInteger>pd){
 		int tam= pd.size();
+		//System.out.print( finale+",");
 		if(finale==0){
 			if(tam<-1){
 				pd.add(new BigInteger("1"));
@@ -44,22 +49,26 @@ public class FactorialS{
 		finale++;
 		int inicio=1;
 		BigInteger curr=new BigInteger("1");
+		BigInteger res=curr;
 		if(tam>(tmp)&&(tam>0)){
 			return pd.get(tmp);
 		}else if(tam>1){
-			curr=pd.getLast();
-			inicio=tmp*10000;
+			res=pd.getLast();
+			inicio=tam*10000;
+			//System.out.print(inicio+" ");
+			curr= new BigInteger(Integer.toString(++inicio));
+			//System.out.println(curr.toString());
 		}
-		BigInteger res=curr;
 		BigInteger tenT= new BigInteger("10000");
 		for(;inicio<finale;inicio++){
+			//System.out.println(curr.toString());
 			res=curr.multiply(res);
-			if(curr.mod(tenT).equals(BigInteger.ZERO)){
-				//System.out.println( curr.toString());
+			if(curr.mod(tenT).equals(BigInteger.ZERO)&&(inicio/10000)>pd.size()){
+				System.out.println( curr.toString()+" "+curr.bitLength());
 				pd.add(res);
 			}
 			curr=curr.add(BigInteger.ONE);
 		}
-		return curr;
+		return res;
 	}
 }
