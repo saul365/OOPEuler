@@ -7,7 +7,48 @@ import java.io.IOException;
 import java.io.File;
 import java.math.BigInteger;
 
-public class FactorialS{ 
+public class Factorial4t extends Thread{ 
+		  private long inicio;
+		  private long finale;
+		  private BigInteger curr;
+	public Factorial4t(int inicio,int finale,LinkedList<BigInteger>pd){
+		int tam= pd.size();
+		//System.out.print( finale+",");
+		if(finale==0){
+			if(tam<1){
+				pd.add(new BigInteger("1"));
+			}
+			return BigInteger.ONE;
+		}
+		int tmp= finale/10000;
+		finale++;
+      this.inicio=inicio;
+		this.finale=finale;
+		curr=new BigInteger("1");
+		BigInteger resP=curr;
+		if(tam>(tmp)&&(tam>0)){
+			return pd.get(tmp);
+		}else if(tam>1){
+			resP=pd.getLast();
+			this.inicio=tam*10000;
+			//System.out.print(inicio+" ");
+			curr= new BigInteger(Integer.toString(++inicio));
+			//System.out.println(curr.toString());
+		}
+   }
+	public void run(){
+		BigInteger tenT= new BigInteger("10000");
+		for(;inicio<finale;inicio++){
+			//System.out.println(curr.toString());
+			resP=curr.multiply(res);
+			if(curr.mod(tenT).equals(BigInteger.ZERO)&&(inicio/10000)>pd.size()){
+				System.out.println( curr.toString()+" "+curr.bitLength());
+				pd.add(res);
+			}
+			curr=curr.add(BigInteger.ONE);
+		}
+		return res;
+	}
 	public static void main(String[] args){ 
 		String archivo="archivo.txt";
 		try{
@@ -35,40 +76,5 @@ public class FactorialS{
 			System.out.println( "Fallo al escribir");
 		}
 		System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
-	}
-	public static BigInteger fact(int finale,LinkedList<BigInteger>pd){
-		int tam= pd.size();
-		//System.out.print( finale+",");
-		if(finale==0){
-			if(tam<-1){
-				pd.add(new BigInteger("1"));
-			}
-			return BigInteger.ONE;
-		}
-		int tmp= finale/10000;
-		finale++;
-		int inicio=1;
-		BigInteger curr=new BigInteger("1");
-		BigInteger res=curr;
-		if(tam>(tmp)&&(tam>0)){
-			return pd.get(tmp);
-		}else if(tam>1){
-			res=pd.getLast();
-			inicio=tam*10000;
-			//System.out.print(inicio+" ");
-			curr= new BigInteger(Integer.toString(++inicio));
-			//System.out.println(curr.toString());
-		}
-		BigInteger tenT= new BigInteger("10000");
-		for(;inicio<finale;inicio++){
-			//System.out.println(curr.toString());
-			res=curr.multiply(res);
-			if(curr.mod(tenT).equals(BigInteger.ZERO)&&(inicio/10000)>pd.size()){
-				System.out.println( curr.toString()+" "+curr.bitLength());
-				pd.add(res);
-			}
-			curr=curr.add(BigInteger.ONE);
-		}
-		return res;
 	}
 }
