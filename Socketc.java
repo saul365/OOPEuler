@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class Socketc{ 
+public class Socketc { 
 	public static void main(String args[]){ 
 		Socket client=null;
 		BufferedReader in=null;
@@ -20,19 +20,29 @@ public class Socketc{
 			System.out.println( "Host desconocido");
 			System.exit(-1);
 		} catch(IOException ioe){
-			System.out.println( "Erroe de IO");
+			System.out.println( "Error de IO");
 			System.exit(-1);
 		}
 		loop:for(;;){
-			System.out.print( "Ingrese algo para mandarlo al servidor: ");
+			/*System.out.print( "Ingrese algo para mandarlo al servidor: ");
 			Scanner sc= new Scanner(System.in);
-			String smt=sc.nextLine(); 
 			out.println(smt);
+			*/
+			String smt=null; 
 			try{
 				smt=in.readLine();
 				System.out.println( smt);
 				if(smt.equals("finish")){
 					break loop;
+				}if(smt.endsWith("factorials")){
+					StringTokenizer StrtFn= new StringTokenizer(smt,",");	
+					String start= strtFn nextElement();
+					String finish= strtFn nextElement();
+					try{
+						Factorial4T resolve =new Factorial4T(Integer.parseInt(start),Integer.parseInt(finish));
+					}catch(InterruptedException ie){
+						System.out.println("Error de hilos");
+					}
 				}
 			}catch(IOException ioe){
 				System.out.println( "Error al leer del servidor");
