@@ -11,21 +11,25 @@ public class Factorial4T{
 		boolean mod0=(abs%4==0)?true:false;
 		int part=abs/4;
 		int ph=part;
-		int add=0;
-      if(mod0){
+		int add=-1;
+      if(!mod0){
          part++;
-			add=1;
+			add=0;
       }
       t1=new FactorialT(inicio,part);
+		System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph+add;
 		part+=ph;
       t2=new FactorialT(inicio,part);
+		System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph;
 		part+=ph;
       t3=new FactorialT(inicio,part);
+		System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph;
 		part+=ph;
       t4=new FactorialT(inicio,part);
+		System.out.println(part+" "+ph+" "+inicio);
 		if(part==finale){
          System.out.println("Exito empresarial");
       }else{
@@ -34,9 +38,30 @@ public class Factorial4T{
    }
 	public void startOp(){
 		  System.out.println("ignora esto");
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+		t4.join();
+		t3.join();
+		t2.join();
+		t1.join();
+		Collections.sort(pd);
+		System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
+		it= System.currentTimeMillis();
+		res = t1.resP.multiply(t2.resP.multiply(t3.resP.multiply(t4.resP)));
+		try{
+			BufferedWriter archivoW= new BufferedWriter(new FileWriter(archivo));
+			archivoW.write(res.toString());
+			archivoW.newLine();
+			archivoW.close();
+		}catch(IOException ioe){
+			System.out.println( "Fallo al escribir");
+		}
    }
 	public static void main(String args[]){ 
 		Factorial4T try1=new Factorial4T(1,1000000);
+		//Factorial4T try1=new Factorial4T(1,9);
 
 	}
 }
