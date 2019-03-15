@@ -1,10 +1,19 @@
-
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.Collections;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.File;
+import java.math.BigInteger;
 
 public class Factorial4T{ 
    FactorialT t1;
    FactorialT t2;
    FactorialT t3;
    FactorialT t4;
+	String archivo="archivo.txt";
 
    public Factorial4T(int inicio,int finale){      
       int abs=finale-inicio+1;
@@ -13,8 +22,8 @@ public class Factorial4T{
 		int ph=part;
 		int add=-1;
       if(!mod0){
-         part++;
-			add=0;
+			add=abs-(part*4);
+         part+=add;
       }
       t1=new FactorialT(inicio,part);
 		System.out.println(part+" "+ph+" "+inicio);
@@ -36,8 +45,8 @@ public class Factorial4T{
          System.out.println("Error en este pedo");
       }
    }
-	public void startOp(){
-		  System.out.println("ignora esto");
+	public void startOp() throws InterruptedException{
+		long it=System.currentTimeMillis();
 		t1.start();
 		t2.start();
 		t3.start();
@@ -46,10 +55,9 @@ public class Factorial4T{
 		t3.join();
 		t2.join();
 		t1.join();
-		Collections.sort(pd);
 		System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
 		it= System.currentTimeMillis();
-		res = t1.resP.multiply(t2.resP.multiply(t3.resP.multiply(t4.resP)));
+		BigInteger res = t1.resP.multiply(t2.resP.multiply(t3.resP.multiply(t4.resP)));
 		try{
 			BufferedWriter archivoW= new BufferedWriter(new FileWriter(archivo));
 			archivoW.write(res.toString());
@@ -61,7 +69,12 @@ public class Factorial4T{
    }
 	public static void main(String args[]){ 
 		Factorial4T try1=new Factorial4T(1,1000000);
-		//Factorial4T try1=new Factorial4T(1,9);
+		//Factorial4T try1=new Factorial4T(1,50);
+		try{
+			try1.startOp();
+		}catch(InterruptedException ie){
+			System.out.println("Error");
+		}
 
 	}
 }
