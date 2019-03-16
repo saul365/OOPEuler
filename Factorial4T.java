@@ -20,7 +20,7 @@ public class Factorial4T{
 		boolean mod0=(abs%4==0)?true:false;
 		int part=abs/4;
 		int ph=part;
-		int add=-1;
+		int add=0;
       if(!mod0){
 			add=abs-(part*4);
          part+=add;
@@ -45,7 +45,7 @@ public class Factorial4T{
          System.out.println("Error en este pedo");
       }
    }
-	public void startOp() throws InterruptedException{
+	public BigInteger startOp() throws InterruptedException{
 		long it=System.currentTimeMillis();
 		t1.start();
 		t2.start();
@@ -58,6 +58,7 @@ public class Factorial4T{
 		System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
 		it= System.currentTimeMillis();
 		BigInteger res = t1.resP.multiply(t2.resP.multiply(t3.resP.multiply(t4.resP)));
+		/*
 		try{
 			BufferedWriter archivoW= new BufferedWriter(new FileWriter(archivo));
 			archivoW.write(res.toString());
@@ -66,10 +67,12 @@ public class Factorial4T{
 		}catch(IOException ioe){
 			System.out.println( "Fallo al escribir");
 		}
+		*/
+		return res;
    }
 	public static void main(String args[]){ 
-		Factorial4T try1=new Factorial4T(1,1000000);
-		//Factorial4T try1=new Factorial4T(1,50);
+		//Factorial4T try1=new Factorial4T(1,1000000);
+		Factorial4T try1=new Factorial4T(1,9);
 		try{
 			try1.startOp();
 		}catch(InterruptedException ie){

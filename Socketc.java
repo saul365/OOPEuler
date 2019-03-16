@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.math.BigInteger;
 
 public class Socketc { 
 	public static void main(String args[]){ 
@@ -35,11 +37,13 @@ public class Socketc {
 				if(smt.equals("finish")){
 					break loop;
 				}if(smt.endsWith("factorials")){
-					StringTokenizer StrtFn= new StringTokenizer(smt,",");	
-					String start= strtFn nextElement();
-					String finish= strtFn nextElement();
+					StringTokenizer strtFn= new StringTokenizer(smt,",");	
+					String start= strtFn.nextToken();
+					String finish= strtFn.nextToken();
 					try{
 						Factorial4T resolve =new Factorial4T(Integer.parseInt(start),Integer.parseInt(finish));
+						BigInteger result=resolve.startOp();
+						out.println(res.toString());
 					}catch(InterruptedException ie){
 						System.out.println("Error de hilos");
 					}
