@@ -7,10 +7,9 @@ import java.io.InputStreamReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Scanner;
-import java.util.LinkedList;;
 
 public class SocketzS{ 
-	public static void main(String args[]) throws InterruptedException{ 
+	public static void main(String args[]){ 
 		ServerSocket server=null; 
 		try{
 			server = new ServerSocket(1234);
@@ -19,9 +18,7 @@ public class SocketzS{
 			System.exit(-1);
 		}
 		Socket client=null;
-		newC acceptor=new newC(server);
-		acceptor.start();
-		/*try{
+		try{
 			client = server.accept();
 		}catch(IOException ioe){
 			System.out.println( "Error em accept");
@@ -36,11 +33,8 @@ public class SocketzS{
 			System.out.println( "Couldnt acces client IO");
 			System.exit(-1);
 		}
-		*/
 		String line= null;
 		String res; 
-		BufferedReader in=null;
-		PrintWriter out=null;
 		loop:for(;;){
 				Scanner cm = new Scanner(System.in);
 				line= cm.next();
@@ -67,45 +61,8 @@ public class SocketzS{
 		}
 	}
 }
-class newC extends Thread{
-	LinkedList<actualC> clientList;
-	Socket client=null;
-	ServerSocket server;
-	
-	public newC(ServerSocket server){
-		this.server=server;
-	}
-
-	public void run(){
-		try{
-			for(;;){
-				client = server.accept();
-				clientList.add(new actualC(client));
-				System.out.println(clientList.size());
-			}
-		}catch(IOException ioe){
-			System.out.println( "Error em accept");
-			System.exit(-1);
-		}
-
-	}
-	
-	
-}
-
-class actualC extends Thread{
+private class newC extends Thread{
 	Socket client;
 	
-	public actualC(Socket client){
-		this.client=client;
-		BufferedReader in=null;
-		PrintWriter out=null;
-		try{
-			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			out = new PrintWriter(client.getOutputStream(),true);
-		}catch(IOException ioe){
-			System.out.println( "Couldnt acces client IO");
-			System.exit(-1);
-		}
-	}
+	
 }

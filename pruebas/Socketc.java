@@ -14,9 +14,8 @@ public class Socketc {
 		Socket client=null;
 		BufferedReader in=null;
 		PrintWriter out=null;
-		String ipv4="201.175.205.20";//lap="192.168.0.11" termuxU="201.175.205.20"
 		try{
-			client= new Socket(InetAddress.getByName(ipv4),1234);
+			client= new Socket(InetAddress.getByName("192.168.0.11"),1234);
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			out = new PrintWriter(client.getOutputStream(),true);
 		} catch(UnknownHostException uhe){
@@ -27,8 +26,8 @@ public class Socketc {
 			System.exit(-1);
 		}
 		loop:for(;;){
-			System.out.print( "Ingrese algo para mandarlo al servidor: ");
-			/*Scanner sc= new Scanner(System.in);
+			/*System.out.print( "Ingrese algo para mandarlo al servidor: ");
+			Scanner sc= new Scanner(System.in);
 			out.println(smt);
 			*/
 			String smt=null; 
