@@ -4,6 +4,9 @@ import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 public class SocketzS{ 
 	public static void main(String args[]){ 
@@ -31,17 +34,35 @@ public class SocketzS{
 			System.exit(-1);
 		}
 		String line= null;
+		String res; 
 		loop:for(;;){
-			try{
-				line = in.readLine();
+				Scanner cm = new Scanner(System.in);
+				line= cm.next();
+				System.out.println( line);
 				out.println(line);
 				System.out.println( line);
-				if(line.equals("finish")){
-					break loop;
+			try{
+				res= in.readLine();
+				if(res.length()>100){
+					BufferedWriter archivoW= new BufferedWriter(new FileWriter("archivoF.txt"));
+					archivoW.write(res.toString());
+					archivoW.newLine();
+					archivoW.close();
+					System.out.println("Resultado escrito en achivoF.txt, Escriba finish para terminar el programa");
+				}else{
+					System.out.println( res);
 				}
 			}catch(IOException ioe){
 				System.out.println( "Read fail");
 			}
+			if(line.endsWith("inish")){
+				break loop;
+			}
 		}
 	}
+}
+private class newC extends Thread{
+	Socket client;
+	
+	
 }

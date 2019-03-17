@@ -43,7 +43,8 @@ public class Socketc {
 					try{
 						Factorial4T resolve =new Factorial4T(Integer.parseInt(start),Integer.parseInt(finish));
 						BigInteger result=resolve.startOp();
-						out.println(res.toString());
+						System.out.println("res");
+						out.println(result.toString());
 					}catch(InterruptedException ie){
 						System.out.println("Error de hilos");
 					}
