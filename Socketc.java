@@ -14,7 +14,7 @@ public class Socketc {
 		Socket client=null;
 		BufferedReader in=null;
 		PrintWriter out=null;
-		String ipv4="201.175.205.20";//lap="192.168.0.11" termuxU="201.175.205.20"
+		String ipv4="192.168.0.11";//lap="192.168.0.11" termuxU="201.175.205.20"
 		try{
 			client= new Socket(InetAddress.getByName(ipv4),1234);
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -37,7 +37,7 @@ public class Socketc {
 				System.out.println( smt);
 				if(smt.equals("finish")){
 					break loop;
-				}if(smt.endsWith("factorials")){
+				}if(smt.endsWith("sucesion")){
 					StringTokenizer strtFn= new StringTokenizer(smt,",");	
 					String start= strtFn.nextToken();
 					String finish= strtFn.nextToken();

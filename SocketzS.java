@@ -19,7 +19,7 @@ public class SocketzS{
 			System.exit(-1);
 		}
 		Socket client=null;
-		newC acceptor=new newC(server);
+		NewC acceptor=new NewC(server);
 		acceptor.start();
 		/*try{
 			client = server.accept();
@@ -45,10 +45,11 @@ public class SocketzS{
 				Scanner cm = new Scanner(System.in);
 				line= cm.next();
 				System.out.println( line);
-				out.println(line);
-				System.out.println( line);
+				//out.println(line);
+				//System.out.println( line);
 			try{
-				res= in.readLine();
+				//res= in.readLine();
+				res=line;
 				if(res.length()>100){
 					BufferedWriter archivoW= new BufferedWriter(new FileWriter("archivoF.txt"));
 					archivoW.write(res.toString());
@@ -62,25 +63,37 @@ public class SocketzS{
 				System.out.println( "Read fail");
 			}
 			if(line.endsWith("inish")){
+				acceptor.endT();
+				System.exit(-1);
 				break loop;
 			}
 		}
 	}
 }
-class newC extends Thread{
-	LinkedList<actualC> clientList;
+class NewC extends Thread{
+	LinkedList<ActualC> clientList;
 	Socket client=null;
 	ServerSocket server;
+	volatile boolean ended;
 	
-	public newC(ServerSocket server){
+	public NewC(ServerSocket server){
 		this.server=server;
+		clientList=new LinkedList<ActualC>();
+		ended=true;
+	}
+
+	public void endT(){
+		for(ActualC x : clientList){
+			x.endT();
+		}
+		ended=false;
 	}
 
 	public void run(){
 		try{
-			for(;;){
+			while(ended==true){
 				client = server.accept();
-				clientList.add(new actualC(client));
+				clientList.add(new ActualC(client));
 				System.out.println(clientList.size());
 			}
 		}catch(IOException ioe){
@@ -93,13 +106,13 @@ class newC extends Thread{
 	
 }
 
-class actualC extends Thread{
+class ActualC extends Thread{
 	Socket client;
+	BufferedReader in=null;
+	PrintWriter out=null;
 	
-	public actualC(Socket client){
+	public ActualC(Socket client){
 		this.client=client;
-		BufferedReader in=null;
-		PrintWriter out=null;
 		try{
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			out = new PrintWriter(client.getOutputStream(),true);
@@ -108,4 +121,10 @@ class actualC extends Thread{
 			System.exit(-1);
 		}
 	}
+	
+	public void endT(){
+		out.println("finish");
+		
+	}
+	
 }
