@@ -3,6 +3,10 @@ import java.math.RoundingMode;
 import java.math.BigInteger;
 
 public class Sucesion4T{ 
+
+	public Sucesion4T(int inicio,in finale){
+		
+	}
 	public static BigDecimal solve(int number){
 		number++;
 		BigDecimal res=BigDecimal.ZERO;;
@@ -15,4 +19,11 @@ public class Sucesion4T{
 	public static void main(String[] args){ 
 		System.out.println(Sucesion4T.solve(100000));
 	}
+}
+
+class SucesionT extends Thread{
+	protected BigDecimal resultado;
+	private BigDecimal tmp;
+	private BigInteger fact;
+	public
 }
