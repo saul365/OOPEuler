@@ -104,6 +104,18 @@ public class Factorial4T{
 		*/
 		return res;
    }
+	
+	public static BigInteger solve(int finale){
+		if(finale==0){
+			return BigInteger.ONE;
+		}
+		Factorial4T solver=new Factorial4T(finale);
+		try{
+			return solver.startOp();
+		}catch(InterruptedException ie){
+
+		}
+	}
 	public static void main(String args[]){ 
 		//Factorial4T try1=new Factorial4T(1,1000000);
 		Factorial4T try1=new Factorial4T(1,9);
