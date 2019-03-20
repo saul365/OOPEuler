@@ -29,24 +29,24 @@ public class Factorial4T{
          part+=add;
       }
       t1=new FactorialT(inicio,part);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph+add;
 		part+=ph;
       t2=new FactorialT(inicio,part);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph;
 		part+=ph;
       t3=new FactorialT(inicio,part);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph;
 		part+=ph;
       t4=new FactorialT(inicio,part);
-		System.out.println(part+" "+ph+" "+inicio);
-		if(part==finale){
-         System.out.println("Exito empresarial");
-      }else{
-         System.out.println("Error en este pedo");
-      }
+		//System.out.println(part+" "+ph+" "+inicio);
+		//if(part==finale){
+         //System.out.println("Exito empresarial");
+      //}else{
+         //System.out.println("Error en este pedo");
+      //}
    }
 
    public Factorial4T(int inicio,int finale){      
@@ -108,6 +108,13 @@ public class Factorial4T{
 	public static BigInteger solve(int finale){
 		if(finale==0){
 			return BigInteger.ONE;
+		}else if(finale<101){
+			BigInteger resTmp=BigInteger.ONE;
+			BigInteger curr=BigInteger.ONE;
+			for(int i=0;i<finale;i++){
+				resTmp=curr.multiply(resTmp);
+				curr=curr.add(BigInteger.ONE);
+			}
 		}
 		Factorial4T solver=new Factorial4T(finale);
 		try{
@@ -115,10 +122,11 @@ public class Factorial4T{
 		}catch(InterruptedException ie){
 
 		}
+		return BigInteger.ONE;
 	}
 	public static void main(String args[]){ 
-		//Factorial4T try1=new Factorial4T(1,1000000);
-		Factorial4T try1=new Factorial4T(1,9);
+		Factorial4T try1=new Factorial4T(1,1000000);
+		//Factorial4T try1=new Factorial4T(1,9);
 		try{
 			try1.startOp();
 		}catch(InterruptedException ie){
@@ -150,7 +158,7 @@ class FactorialT extends Thread{
 			resP=curr.multiply(resP);
 			curr=curr.add(BigInteger.ONE);
 		}
-		System.out.println("Multiplicado en "+this.getId());
+		//System.out.println("Multiplicado en "+this.getId());
 	}
 	public static BigInteger getRes(){
 		return res;
