@@ -8,14 +8,19 @@ public class Factorial{
 		String index="10";
 		int indexN=1;
 		BigInteger block=new BigInteger(index);
-		for(int i=1;i<10001;i++){
+		for(int i=1;i<50001;i++){
 			res=act.multiply(res);
 			if(res==res.max(block)){
+				loop:for(;;){
+					index=index.concat("0");
+					indexN++;
+					block=new BigInteger(index);
+					//block=new BigInteger(Integer.toString(nums[index]));
+					if(block==res.max(block)){
+						break loop;
+					}
+				}
 				System.out.println(act.toString()+"-"+ indexN);	
-				index=index.concat("00");
-				indexN+=2;
-				block=new BigInteger(index);
-				//block=new BigInteger(Integer.toString(nums[index]));
 			}
 			//System.out.println(act.toString());	
 			act=act.add(BigInteger.ONE);
