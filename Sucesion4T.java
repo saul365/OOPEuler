@@ -22,19 +22,19 @@ public class Sucesion4T{
          part+=add;
       }
       t1=new SucesionT(inicio,part,precision);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph+add+1;
 		part+=ph;
       t2=new SucesionT(inicio,part,precision);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph;
 		part+=ph;
       t3=new SucesionT(inicio,part,precision);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph;
 		part+=ph;
       t4=new SucesionT(inicio,part,precision);
-		System.out.println(part+" "+ph+" "+inicio);
+		//System.out.println(part+" "+ph+" "+inicio);
 		
 	}
 	public static BigDecimal solve(int number){
@@ -64,7 +64,7 @@ public class Sucesion4T{
 		t3.join();
 		t2.join();
 		t1.join();
-		System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
+		//System.out.println("En un tiempo de: "+(System.currentTimeMillis()-it)/1000);
 		BigDecimal res = t1.resultado.add(t2.resultado.add(t3.resultado.add(t4.resultado)));
 		/*
 		try{
@@ -79,10 +79,10 @@ public class Sucesion4T{
 		return res;
    }
 	public static void main(String[] args){ 
-		Sucesion4T prueba=new Sucesion4T(0,28,10);
+		Sucesion4T prueba=new Sucesion4T(Integer.parseInt(args[0]),Integer.parseInt(args[1]),Integer.parseInt(args[2]));//inicio,final,precisión
 		try{
 			BigDecimal resultado=prueba.startOp();
-			System.out.println(resultado.toString());
+			System.out.println(resultado.toPlainString());
 		}catch(InterruptedException ie){
 
 		}
@@ -105,11 +105,11 @@ class SucesionT extends Thread{
 		this.precision=precision;
 		resultado=BigDecimal.ZERO;
 		fact=Factorial4T.solve(inicio);
-		System.out.println(fact.toString()+" in="+inicio);
+		//System.out.println(fact.toString()+" in="+inicio);
 		actual=new BigInteger(Integer.toString(inicio));
 	}
 	public void run(){
-		precision++;
+		//precision++;
 		finale++;
 		for(;inicio<finale;inicio++){
 			System.out.println("Fact ="+fact.toString()+" act="+actual.toString());
@@ -117,6 +117,6 @@ class SucesionT extends Thread{
 			resultado=resultado.add(BigDecimal.ONE.divide(new BigDecimal(fact),precision,RoundingMode.HALF_UP));
 			fact=actual.multiply(fact);
 		}
-		System.out.println(resultado.toPlainString()+" in "+Thread.currentThread()+" in="+inicio+" fin="+finale);
+		//System.out.println(resultado.toPlainString()+" in "+Thread.currentThread()+" in="+inicio+" fin="+finale);
 	}
 }

@@ -181,7 +181,7 @@ public class Factorial4T{
 		}catch(InterruptedException ie){
 			System.out.println("Error");
 		}*/
-		System.out.println(Factorial4T.solve(8));
+		System.out.println(Factorial4T.solve(1000000));
 
 	}
 }
