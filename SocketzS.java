@@ -1,3 +1,5 @@
+//package OOPEuler;
+
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.io.PrintWriter;
@@ -34,12 +36,14 @@ public class SocketzS{
 				Scanner cm = new Scanner(System.in);
 				line= cm.next();
 				int key=Integer.parseInt(line);
-				while(!tabla.containsKey(line)){
+				key++;
+				String tmp=Integer.toString(key);
+				while(!tabla.containsKey(tmp)){
 					key++;
-					line=Integer.toString(key);
+					tmp=Integer.toString(key);
 				}
 				String pres=line;
-				String fact=tabla.get(line).toString();
+				String fact=tabla.get(tmp).toString();
 			try{
 				acceptor.sendT(fact,pres);
 				while(!acceptor.getReady()){
@@ -127,6 +131,9 @@ class NewC extends Thread{
 					}
 				}
 			}
+		for(ActualC x: finished){
+			clientList.add(x);
+		}
 		ready=true;
 	}
 	public boolean getReady(){
@@ -175,6 +182,7 @@ class ActualC extends Thread{
 			out.println(Integer.toString(inicio)+","+Integer.toString(finale)+","+Integer.toString(precision)+",sucesion");
 			res=in.readLine();
 			finish=true;
+			halt=true;
 		}catch(IOException ioe){
 			System.out.println( "Error em accept");
 			System.exit(-1);

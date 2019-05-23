@@ -1,3 +1,5 @@
+//package OOPEuler;
+
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.Hashtable;

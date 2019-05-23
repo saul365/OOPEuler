@@ -1,3 +1,4 @@
+//package OOPEuler;
 import java.net.Socket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -49,8 +50,8 @@ public class Socketc {
 					try{
 						Sucesion4T resolve =new Sucesion4T(Integer.parseInt(start),Integer.parseInt(finish),Integer.parseInt(precision));
 						BigDecimal result=resolve.startOp();
-						System.out.println("res"+result.toString());
-						out.println(result.toString());
+						System.out.println("res"+result.toPlainString());
+						out.println(result.toPlainString());
 					}catch(InterruptedException ie){
 						System.out.println("Error de hilos");
 					}

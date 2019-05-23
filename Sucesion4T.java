@@ -1,3 +1,5 @@
+//package OOPEuler;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.BigInteger;
@@ -21,6 +23,7 @@ public class Sucesion4T{
 			add=abs-(part*4);
          part+=add;
       }
+		part+=inicio;
       t1=new SucesionT(inicio,part,precision);
 		//System.out.println(part+" "+ph+" "+inicio);
 		inicio+=ph+add+1;
@@ -37,12 +40,12 @@ public class Sucesion4T{
 		//System.out.println(part+" "+ph+" "+inicio);
 		
 	}
-	public static BigDecimal solve(int number){
+	public static BigDecimal resuelve(int number,Integer digits){
 		number++;
 		BigDecimal res=BigDecimal.ZERO;;
 		BigInteger fact;
 		for(int i=0;i<number;i++){
-			res=res.add(new BigDecimal(Integer.toString(i)).divide(new BigDecimal(Factorial4T.solve(i)),20,RoundingMode.HALF_UP));
+			res=res.add(new BigDecimal(Integer.toString(i)).divide(new BigDecimal(Factorial4T.solve(i)),digits,RoundingMode.HALF_UP));
 		}
 		return res;
 	}
