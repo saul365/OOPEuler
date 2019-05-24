@@ -32,9 +32,16 @@ public class SocketzS{
 		BufferedReader in=null;
 		PrintWriter out=null;
 		loop:for(;;){
-				System.out.println( "Ingrese cuantos digitos desea del número de euler");
-				Scanner cm = new Scanner(System.in);
-				line= cm.next();
+				boolean correct=false;
+				while(!correct){
+					System.out.println( "Ingrese cuantos digitos desea del número de euler");
+					Scanner cm = new Scanner(System.in);
+					line= cm.next();
+					if(line.matches(".*?[a-zA-Z].?")){
+						System.out.println( "No puede ingresar letras.");
+					}
+					else{correct=true;}
+				}
 				int key=Integer.parseInt(line);
 				key++;
 				String tmp=Integer.toString(key);
@@ -44,6 +51,12 @@ public class SocketzS{
 				}
 				String pres=line;
 				String fact=tabla.get(tmp).toString();
+				if(acceptor.clientList.size()<1){
+					System.out.println("Esperando a que se conecte al menos un cliente.");
+					while(acceptor.clientList.size()<1){
+					}
+					System.out.println( "Cliente(s) conectado(s)");
+				}
 			try{
 				acceptor.sendT(fact,pres);
 				while(!acceptor.getReady()){
@@ -147,7 +160,7 @@ class NewC extends Thread{
 			while(ended==true){
 				client = server.accept();
 				clientList.add(new ActualC(client));
-				System.out.println(clientList.size());
+				//System.out.println(clientList.size());
 			}
 		}catch(IOException ioe){
 			System.out.println( "Error em accept");
