@@ -29,7 +29,7 @@ public class Socketc {
 			System.exit(-1);
 		}
 		loop:for(;;){
-			System.out.print( "Ingrese algo para mandarlo al servidor: ");
+			System.out.print( "Conectado al servidor esperando...");
 			/*Scanner sc= new Scanner(System.in);
 			out.println(smt);
 			*/
