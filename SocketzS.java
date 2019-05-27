@@ -37,7 +37,7 @@ public class SocketzS{
 					System.out.println( "Ingrese cuantos digitos desea del número de euler");
 					Scanner cm = new Scanner(System.in);
 					line= cm.next();
-					if(line.matches(".*?[a-zA-Z].?")){
+					if(line.matches(".*?[a-zA-Z].*?")){
 						System.out.println( "No puede ingresar letras.");
 					}
 					else{correct=true;}
